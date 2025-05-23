@@ -11,7 +11,7 @@ import {
   X,
 } from "lucide-react";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 import { redirect } from "next/navigation";
 import LogoutButton from "@/components/LogoutButton";
 export default async function DashboardLayout({
