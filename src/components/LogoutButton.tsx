@@ -11,7 +11,7 @@ export default function LogoutButton() {
           callbackUrl: "/",
         })
       }
-      className="flex items-center gap-2 text-red-600 hover:text-red-800"
+      className="flex items-center gap-2 text-red-600 cursor-pointer hover:text-red-800"
     >
       <LogOut className="h-4 w-4" />
       Logout
