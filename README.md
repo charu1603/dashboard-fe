@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pizza-dashboard-fe
 
-## Getting Started
+Next.js Dashboard with Google Authentication
+![Screenshot (833)](https://github.com/user-attachments/assets/517a3cf1-1e2c-47c0-8542-2590364026cb)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Technologies Used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- NextJs
+- Typescript
+- Tailwind CSS
+- NextAuth.js
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Setup and Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Clone the repository:
+    ```bash
+    https://github.com/charu1603/dashboard-fe.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd dashboard-fe
+    ```
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
+4. Add .env.local file at the root level
+   ```bash
+   # .env.local
+   GOOGLE_CLIENT_ID=your-google-client-id
+   GOOGLE_CLIENT_SECRET=your-google-client-secret
+   NEXTAUTH_URL=http://localhost:3000
+   NEXTAUTH_SECRET=your-random-secret
+   ```
+5. Start the application:
+    ```bash
+    npm run dev
+    ```
 
-## Learn More
+## Features
+1. Authentication using Nextauth.js - login, logout, protected routes.
+2. Clean UI/UX - Responsive landing page and a dashboard.
+3. Basic sorting and filtering.
+4. Proper error handling and loading state.
+5. Built with Next.js, TypeScript, Tailwind CSS, and NextAuth.js for Google authentication.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
