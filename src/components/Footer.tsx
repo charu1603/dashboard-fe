@@ -31,20 +31,7 @@ const Footer = () => {
                 The ultimate dashboard for pizza businesses. Manage orders,
                 track deliveries, and grow your business.
               </p>
-              <div className="mt-6 flex space-x-4">
-                {["twitter", "facebook", "instagram", "github"].map(
-                  (social) => (
-                    <a
-                      key={social}
-                      href="#"
-                      className="text-gray-400 hover:text-gray-500"
-                    >
-                      <span className="sr-only">{social}</span>
-                      <div className="h-6 w-6 rounded-full bg-gray-100"></div>
-                    </a>
-                  )
-                )}
-              </div>
+           
             </div>
 
             <div>
