@@ -6,7 +6,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-
+import Header from "@/components/Header"
 export default function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -16,6 +16,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-50">
+        <Header/>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <div className="flex justify-center">
