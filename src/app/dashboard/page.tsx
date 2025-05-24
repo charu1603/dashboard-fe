@@ -1,23 +1,27 @@
-"use client"
-
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import { ArrowUpRight, BarChart3, Clock, DollarSign, ShoppingBag, Users } from "lucide-react"
+"use client";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
+import {
+  ArrowUpRight,
+  BarChart3,
+  Clock,
+  DollarSign,
+  ShoppingBag,
+  Users,
+} from "lucide-react";
 
 export default function DashboardPage() {
- 
-  const [isLoading, setIsLoading] = useState(true)
-
-
-
+  const { data: session, status } = useSession();
 
   return (
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-          Welcome back,
+          Hello, {session?.user?.name || "Guest"}!
         </h1>
-        <p className="mt-2 text-gray-600">Here's what's happening with your pizza business today.</p>
+        <p className="mt-2 text-gray-600">
+          Here's what's happening with your pizza business today.
+        </p>
       </div>
 
       {/* Stats Cards */}
@@ -29,7 +33,9 @@ export default function DashboardPage() {
               <ShoppingBag className="h-6 w-6" />
             </div>
             <div className="ml-4">
-              <h3 className="text-sm font-medium text-gray-500">Total Orders</h3>
+              <h3 className="text-sm font-medium text-gray-500">
+                Total Orders
+              </h3>
               <div className="mt-1 flex items-baseline">
                 <p className="text-2xl font-semibold text-gray-900">24</p>
                 <p className="ml-2 flex items-baseline text-sm font-semibold text-green-600">
@@ -48,7 +54,9 @@ export default function DashboardPage() {
               <Clock className="h-6 w-6" />
             </div>
             <div className="ml-4">
-              <h3 className="text-sm font-medium text-gray-500">Active Orders</h3>
+              <h3 className="text-sm font-medium text-gray-500">
+                Active Orders
+              </h3>
               <div className="mt-1 flex items-baseline">
                 <p className="text-2xl font-semibold text-gray-900">8</p>
                 <p className="ml-2 flex items-baseline text-sm font-semibold text-green-600">
@@ -105,7 +113,9 @@ export default function DashboardPage() {
         <div className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200">
           <div className="border-b border-gray-200 p-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-base font-semibold text-gray-900">Sales Overview</h3>
+              <h3 className="text-base font-semibold text-gray-900">
+                Sales Overview
+              </h3>
               <div className="inline-flex items-center rounded-lg bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">
                 <span>Last 7 days</span>
               </div>
@@ -116,8 +126,18 @@ export default function DashboardPage() {
               <svg className="h-full w-full" viewBox="0 0 400 200">
                 {/* Grid lines */}
                 <defs>
-                  <pattern id="grid" width="40" height="25" patternUnits="userSpaceOnUse">
-                    <path d="M 40 0 L 0 0 0 25" fill="none" stroke="#f3f4f6" strokeWidth="1" />
+                  <pattern
+                    id="grid"
+                    width="40"
+                    height="25"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path
+                      d="M 40 0 L 0 0 0 25"
+                      fill="none"
+                      stroke="#f3f4f6"
+                      strokeWidth="1"
+                    />
                   </pattern>
                 </defs>
                 <rect width="100%" height="100%" fill="url(#grid)" />
@@ -143,9 +163,19 @@ export default function DashboardPage() {
 
                 {/* Area chart */}
                 <defs>
-                  <linearGradient id="salesGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <linearGradient
+                    id="salesGradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="0%"
+                    y2="100%"
+                  >
                     <stop offset="0%" stopColor="#f97316" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#f97316" stopOpacity="0.05" />
+                    <stop
+                      offset="100%"
+                      stopColor="#f97316"
+                      stopOpacity="0.05"
+                    />
                   </linearGradient>
                 </defs>
 
@@ -166,14 +196,62 @@ export default function DashboardPage() {
                 />
 
                 {/* Data points */}
-                <circle cx="50" cy="120" r="4" fill="#f97316" className="drop-shadow-sm" />
-                <circle cx="90" cy="100" r="4" fill="#f97316" className="drop-shadow-sm" />
-                <circle cx="130" cy="110" r="4" fill="#f97316" className="drop-shadow-sm" />
-                <circle cx="170" cy="80" r="4" fill="#f97316" className="drop-shadow-sm" />
-                <circle cx="210" cy="90" r="4" fill="#f97316" className="drop-shadow-sm" />
-                <circle cx="250" cy="60" r="4" fill="#f97316" className="drop-shadow-sm" />
-                <circle cx="290" cy="70" r="4" fill="#f97316" className="drop-shadow-sm" />
-                <circle cx="330" cy="50" r="4" fill="#f97316" className="drop-shadow-sm" />
+                <circle
+                  cx="50"
+                  cy="120"
+                  r="4"
+                  fill="#f97316"
+                  className="drop-shadow-sm"
+                />
+                <circle
+                  cx="90"
+                  cy="100"
+                  r="4"
+                  fill="#f97316"
+                  className="drop-shadow-sm"
+                />
+                <circle
+                  cx="130"
+                  cy="110"
+                  r="4"
+                  fill="#f97316"
+                  className="drop-shadow-sm"
+                />
+                <circle
+                  cx="170"
+                  cy="80"
+                  r="4"
+                  fill="#f97316"
+                  className="drop-shadow-sm"
+                />
+                <circle
+                  cx="210"
+                  cy="90"
+                  r="4"
+                  fill="#f97316"
+                  className="drop-shadow-sm"
+                />
+                <circle
+                  cx="250"
+                  cy="60"
+                  r="4"
+                  fill="#f97316"
+                  className="drop-shadow-sm"
+                />
+                <circle
+                  cx="290"
+                  cy="70"
+                  r="4"
+                  fill="#f97316"
+                  className="drop-shadow-sm"
+                />
+                <circle
+                  cx="330"
+                  cy="50"
+                  r="4"
+                  fill="#f97316"
+                  className="drop-shadow-sm"
+                />
 
                 {/* X-axis labels */}
                 <g className="text-xs fill-gray-500">
@@ -225,7 +303,9 @@ export default function DashboardPage() {
         <div className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200">
           <div className="border-b border-gray-200 p-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-base font-semibold text-gray-900">Popular Items</h3>
+              <h3 className="text-base font-semibold text-gray-900">
+                Popular Items
+              </h3>
               <div className="inline-flex items-center rounded-lg bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">
                 <span>This month</span>
               </div>
@@ -248,11 +328,16 @@ export default function DashboardPage() {
                   </div>
                   <div className="ml-4 flex-1">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-gray-900">{item.name}</p>
+                      <p className="text-sm font-medium text-gray-900">
+                        {item.name}
+                      </p>
                       <p className="text-sm text-gray-500">{item.sales} sold</p>
                     </div>
                     <div className="mt-1 h-2 w-full rounded-full bg-gray-100">
-                      <div className="h-2 rounded-full bg-orange-500" style={{ width: `${item.percent}%` }}></div>
+                      <div
+                        className="h-2 rounded-full bg-orange-500"
+                        style={{ width: `${item.percent}%` }}
+                      ></div>
                     </div>
                   </div>
                 </div>
@@ -266,8 +351,13 @@ export default function DashboardPage() {
       <div className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200">
         <div className="border-b border-gray-200 p-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-semibold text-gray-900">Recent Activity</h3>
-            <Link href="/dashboard/orders" className="text-sm font-medium text-orange-600 hover:text-orange-500">
+            <h3 className="text-base font-semibold text-gray-900">
+              Recent Activity
+            </h3>
+            <Link
+              href="/dashboard/orders"
+              className="text-sm font-medium text-orange-600 hover:text-orange-500"
+            >
               View all
             </Link>
           </div>
@@ -304,8 +394,12 @@ export default function DashboardPage() {
                   <activity.icon className="h-5 w-5" />
                 </div>
                 <div className="ml-4 flex-1">
-                  <p className="text-sm font-medium text-gray-900">{activity.title}</p>
-                  <p className="text-sm text-gray-600">{activity.description}</p>
+                  <p className="text-sm font-medium text-gray-900">
+                    {activity.title}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    {activity.description}
+                  </p>
                 </div>
                 <div className="text-sm text-gray-500">{activity.time}</div>
               </div>
@@ -317,7 +411,9 @@ export default function DashboardPage() {
       {/* Quick Actions */}
       <div className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200">
         <div className="border-b border-gray-200 p-6">
-          <h3 className="text-base font-semibold text-gray-900">Quick Actions</h3>
+          <h3 className="text-base font-semibold text-gray-900">
+            Quick Actions
+          </h3>
         </div>
         <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 md:grid-cols-3">
           <button className="flex items-center justify-center rounded-lg border border-gray-200 bg-white p-4 text-gray-700 shadow-sm transition-all hover:border-orange-500 hover:text-orange-500">
@@ -335,5 +431,5 @@ export default function DashboardPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

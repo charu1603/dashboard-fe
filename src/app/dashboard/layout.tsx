@@ -127,17 +127,8 @@ export default async function DashboardLayout({
           {/* Sidebar Footer */}
           <div className="border-t p-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-700">
-                  <span className="text-sm font-medium"></span>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-700"></p>
-                  <p className="text-xs text-gray-500"></p>
-                </div>
-              </div>
               <div className="flex space-x-2">
-                 <LogoutButton />
+                <LogoutButton />
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { ChevronDown, ChevronUp, Edit, Search, Trash2 } from "lucide-react"
+import { useState, useEffect } from "react";
+import { ChevronDown, ChevronUp, Edit, Search, Trash2 } from "lucide-react";
 
 // Mock data for pizza orders
 const mockOrders = [
@@ -85,68 +85,78 @@ const mockOrders = [
     orderDate: "2023-05-16 16:10",
     status: "Delivered",
   },
-]
+];
 
 // Status badge component
 const StatusBadge = ({ status }: { status: string }) => {
-  let colorClasses = ""
+  let colorClasses = "";
 
   switch (status) {
     case "Pending":
-      colorClasses = "bg-yellow-100 text-yellow-800"
-      break
+      colorClasses = "bg-yellow-100 text-yellow-800";
+      break;
     case "Preparing":
-      colorClasses = "bg-blue-100 text-blue-800"
-      break
+      colorClasses = "bg-blue-100 text-blue-800";
+      break;
     case "Out for Delivery":
-      colorClasses = "bg-purple-100 text-purple-800"
-      break
+      colorClasses = "bg-purple-100 text-purple-800";
+      break;
     case "Delivered":
-      colorClasses = "bg-green-100 text-green-800"
-      break
+      colorClasses = "bg-green-100 text-green-800";
+      break;
     case "Cancelled":
-      colorClasses = "bg-red-100 text-red-800"
-      break
+      colorClasses = "bg-red-100 text-red-800";
+      break;
     default:
-      colorClasses = "bg-gray-100 text-gray-800"
+      colorClasses = "bg-gray-100 text-gray-800";
   }
 
-  return <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium ${colorClasses}`}>{status}</span>
-}
+  return (
+    <span
+      className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-medium ${colorClasses}`}
+    >
+      {status}
+    </span>
+  );
+};
 
 export default function OrdersPage() {
-  const [orders, setOrders] = useState(mockOrders)
-  const [isLoading, setIsLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [statusFilter, setStatusFilter] = useState("all")
+  const [orders, setOrders] = useState(mockOrders);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
   const [sortConfig, setSortConfig] = useState<{
-    key: string
-    direction: "ascending" | "descending"
-  } | null>(null)
+    key: string;
+    direction: "ascending" | "descending";
+  } | null>(null);
 
   // Simulate loading
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
+      setIsLoading(false);
+    }, 1000);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   // Handle sorting
   const requestSort = (key: string) => {
-    let direction: "ascending" | "descending" = "ascending"
+    let direction: "ascending" | "descending" = "ascending";
 
-    if (sortConfig && sortConfig.key === key && sortConfig.direction === "ascending") {
-      direction = "descending"
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === "ascending"
+    ) {
+      direction = "descending";
     }
 
-    setSortConfig({ key, direction })
-  }
+    setSortConfig({ key, direction });
+  };
 
   // Apply sorting, filtering, and searching
   const getProcessedOrders = () => {
-    let processedOrders = [...orders]
+    let processedOrders = [...orders];
 
     // Apply search
     if (searchTerm) {
@@ -154,32 +164,40 @@ export default function OrdersPage() {
         (order) =>
           order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
           order.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          order.pizzaType.toLowerCase().includes(searchTerm.toLowerCase()),
-      )
+          order.pizzaType.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     }
 
     // Apply status filter
     if (statusFilter !== "all") {
-      processedOrders = processedOrders.filter((order) => order.status === statusFilter)
+      processedOrders = processedOrders.filter(
+        (order) => order.status === statusFilter
+      );
     }
 
     // Apply sorting
     if (sortConfig) {
       processedOrders.sort((a, b) => {
-        if (a[sortConfig.key as keyof typeof a] < b[sortConfig.key as keyof typeof b]) {
-          return sortConfig.direction === "ascending" ? -1 : 1
+        if (
+          a[sortConfig.key as keyof typeof a] <
+          b[sortConfig.key as keyof typeof b]
+        ) {
+          return sortConfig.direction === "ascending" ? -1 : 1;
         }
-        if (a[sortConfig.key as keyof typeof a] > b[sortConfig.key as keyof typeof b]) {
-          return sortConfig.direction === "ascending" ? 1 : -1
+        if (
+          a[sortConfig.key as keyof typeof a] >
+          b[sortConfig.key as keyof typeof b]
+        ) {
+          return sortConfig.direction === "ascending" ? 1 : -1;
         }
-        return 0
-      })
+        return 0;
+      });
     }
 
-    return processedOrders
-  }
+    return processedOrders;
+  };
 
-  const processedOrders = getProcessedOrders()
+  const processedOrders = getProcessedOrders();
 
   if (isLoading) {
     return (
@@ -188,20 +206,26 @@ export default function OrdersPage() {
         <div className="h-10 w-full animate-pulse rounded-md bg-gray-200"></div>
         <div className="h-[400px] w-full animate-pulse rounded-md bg-gray-200"></div>
       </div>
-    )
+    );
   }
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Pizza Orders</h1>
-        <p className="mt-2 text-gray-600">Manage and track all your pizza orders</p>
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+          Pizza Orders
+        </h1>
+        <p className="mt-2 text-gray-600">
+          Manage and track all your pizza orders
+        </p>
       </div>
 
       <div className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200">
         <div className="border-b border-gray-200 px-6 py-4">
           <h2 className="text-lg font-medium text-gray-900">Orders</h2>
-          <p className="mt-1 text-sm text-gray-600">View and manage all pizza orders in one place</p>
+          <p className="mt-1 text-sm text-gray-600">
+            View and manage all pizza orders in one place
+          </p>
         </div>
 
         <div className="p-6">
@@ -246,7 +270,7 @@ export default function OrdersPage() {
                         className="group flex items-center font-medium text-gray-500 hover:text-gray-700"
                       >
                         Order ID
-                        <span className="ml-1.5 flex-none rounded text-gray-400 group-hover:visible group-hover:text-gray-500">
+                        <span className="ml-1.5 flex-none rounded text-gray-400 ">
                           {sortConfig?.key === "id" ? (
                             sortConfig.direction === "ascending" ? (
                               <ChevronUp className="h-4 w-4" />
@@ -254,7 +278,7 @@ export default function OrdersPage() {
                               <ChevronDown className="h-4 w-4" />
                             )
                           ) : (
-                            <ChevronDown className="h-4 w-4 opacity-0 group-hover:opacity-100" />
+                            <ChevronDown className="h-4 w-4 " />
                           )}
                         </span>
                       </button>
@@ -276,7 +300,7 @@ export default function OrdersPage() {
                               <ChevronDown className="h-4 w-4" />
                             )
                           ) : (
-                            <ChevronDown className="h-4 w-4 opacity-0 group-hover:opacity-100" />
+                            <ChevronDown className="h-4 w-4" />
                           )}
                         </span>
                       </button>
@@ -310,7 +334,7 @@ export default function OrdersPage() {
                               <ChevronDown className="h-4 w-4" />
                             )
                           ) : (
-                            <ChevronDown className="h-4 w-4 opacity-0 group-hover:opacity-100" />
+                            <ChevronDown className="h-4 w-4" />
                           )}
                         </span>
                       </button>
@@ -319,14 +343,9 @@ export default function OrdersPage() {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                     >
-                      <button
-                      
-                        className="group flex items-center font-medium text-gray-500 hover:text-gray-700"
-                      >
+                      <button className="group flex items-center font-medium text-gray-500 hover:text-gray-700">
                         Status
-                        <span className="ml-1.5 flex-none rounded text-gray-400 group-hover:visible group-hover:text-gray-500">
-                       
-                        </span>
+                        <span className="ml-1.5 flex-none rounded text-gray-400 group-hover:visible group-hover:text-gray-500"></span>
                       </button>
                     </th>
                     <th
@@ -340,18 +359,31 @@ export default function OrdersPage() {
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {processedOrders.length === 0 ? (
                     <tr>
-                      <td colSpan={7} className="whitespace-nowrap px-6 py-4 text-center text-sm text-gray-500">
+                      <td
+                        colSpan={7}
+                        className="whitespace-nowrap px-6 py-4 text-center text-sm text-gray-500"
+                      >
                         No orders found.
                       </td>
                     </tr>
                   ) : (
                     processedOrders.map((order) => (
                       <tr key={order.id} className="hover:bg-gray-50">
-                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">{order.id}</td>
-                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{order.customerName}</td>
-                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{order.pizzaType}</td>
-                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{order.quantity}</td>
-                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">{order.orderDate}</td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+                          {order.id}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                          {order.customerName}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                          {order.pizzaType}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                          {order.quantity}
+                        </td>
+                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+                          {order.orderDate}
+                        </td>
                         <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
                           <StatusBadge status={order.status} />
                         </td>
@@ -375,5 +407,5 @@ export default function OrdersPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
